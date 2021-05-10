@@ -1,29 +1,29 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
+  $("[data-tab]").on("click", function (e) {
+    let tabCurrent = $(this).attr("data-tab"),
+      counterCurrent = $(this).children(".btn-task-counter").text().trim(),
+      titleCurrent = $(this).children(".tab-btn-name").text().trim(),
+      colorCurrent = $(this).find(".tab-btn-icon").css("background-color");
 
+    // change active element
+    $("[data-tab]").removeClass('__active');
+    $(this).addClass('__active');
 
-    $("[data-tab]").on("click", function() {
-        // let tabs = $('.todo-list').data('tabContent', $(this).data('tab'));
-        let tabs = document.querySelectorAll('[data-tab-content]')
+    // hide-show tab content
+    $(document).find("[data-tab-content]").hide();
+    $(document).find("[data-tab-content=" + tabCurrent + "]").show();
 
-        console.log(tabs);
-        // tabs.forEach(e => {
-        //     console.log($(e).data());
-        // showList()
-        // });
-        // console.log($(this).closest('.todo-menu-wrapper').siblings('.todo-list-wrapper')
-        // .find('.todo-list').data('tabContent' , $(this).data('tab')));
+    // change title annd counter
+    $(document).find('[data-tab-title]').html(titleCurrent).css('color', colorCurrent);
+    $(document).find('[data-title-counter]').html(counterCurrent).css('color', colorCurrent);
+    $(document).find("[data-tab-content=" + tabCurrent + "]").show();
 
-    });
-
-    /*$("[data-tab]").on("click", function(e) {
-        let tabCurrent = $(this).attr('data-tab');
-
-        $(document).find('[data-tab]').hide();
-        $(document).find('[data-tab-content=' + tabCurrent + ']').show();
-
-        //let content = tabCurrent;
-        //$(document).find('[data-tab-content]').children().remove();
-        //$(document).find('[data-tab-content]').append('<div class="content">' + content + '</div>');
-    });*/
+    // get length of content list
+    console.log($(document).find('[data-tab-content]'));
+    
+    // let content = tabCurrent;
+    // $(document).find('[data-tab-content]').children().remove();
+    // $(document).find('[data-tab-content]').append('<div class="content">' + content + '</div>');
+  });
 });

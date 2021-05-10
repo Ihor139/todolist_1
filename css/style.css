@@ -153,7 +153,7 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-.dashboard-icon {
+.tab-btn-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,34 +167,34 @@
 
 .todo-menu-tabs-dashboard
   .dashboard-item:nth-child(1)
-  .dashboard-name
-  .dashboard-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgb(0, 132, 255);
 }
 .todo-menu-tabs-dashboard
   .dashboard-item:nth-child(2)
-  .dashboard-name
-  .dashboard-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgb(255, 187, 0);
 }
 .todo-menu-tabs-dashboard
   .dashboard-item:nth-child(3)
-  .dashboard-name
-  .dashboard-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgba(98, 98, 99, 0.822);
 }
 .todo-menu-tabs-dashboard
   .dashboard-item:nth-child(4)
-  .dashboard-name
-  .dashboard-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgb(255, 0, 0);
 }
 
-.dashboard-name {
+.tab-btn-name {
   color: rgb(66, 66, 66);
 }
 
-.dashboard-counter {
+.btn-task-counter {
   color: rgb(66, 66, 66);
 }
 
@@ -207,6 +207,7 @@
 .todo-menu-tab-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 5px 15px;
   margin-bottom: 3px;
   cursor: pointer;
@@ -222,7 +223,7 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-.menu-tab-icon {
+.tab-btn-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,48 +234,50 @@
   height: 30px;
   border-radius: 50%;
 }
-/* .menu-tab-icon:nth-child(1) {
+/* .tab-btn-icon:nth-child(1) {
 } */
 .todo-menu-tabs-list
   .todo-menu-tab-item:nth-child(1)
-  .menu-tab-name
-  .menu-tab-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgb(0, 132, 255);
 }
 
 .todo-menu-tabs-list
   .todo-menu-tab-item:nth-child(2)
-  .menu-tab-name
-  .menu-tab-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgb(255, 187, 0);
 }
 
 .todo-menu-tabs-list
   .todo-menu-tab-item:nth-child(3)
-  .menu-tab-name
-  .menu-tab-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgb(255, 0, 0);
 }
 
 .todo-menu-tabs-list
   .todo-menu-tab-item:nth-child(4)
-  .menu-tab-name
-  .menu-tab-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background: green;
 }
 
 .todo-menu-tabs-list
   .todo-menu-tab-item:nth-child(5)
-  .menu-tab-name
-  .menu-tab-icon {
+  .tab-btn-name
+  .tab-btn-icon {
   background-color: rgb(136, 136, 136);
 }
 
-.menu-tab-name {
+.tab-btn-name {
   display: flex;
   align-items: center;
 }
-
+.dashboard-name{
+  display: block;
+}
 .menu-tab-counter {
 }
 
