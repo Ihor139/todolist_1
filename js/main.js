@@ -19,11 +19,23 @@ $(document).ready(function () {
     $(document).find('[data-title-counter]').html(counterCurrent).css('color', colorCurrent);
     $(document).find("[data-tab-content=" + tabCurrent + "]").show();
 
-    // get length of content list
-    console.log($(document).find('[data-tab-content]'));
-    
     // let content = tabCurrent;
     // $(document).find('[data-tab-content]').children().remove();
     // $(document).find('[data-tab-content]').append('<div class="content">' + content + '</div>');
   });
+
+  // get length of content list
+
+  let todos = document.querySelectorAll('.todo-list');
+  let dataTab = $(document).find('.tab-btn-name').parent();
+
+  for (let i = 0; i < todos.length; i++) {
+    let dataContent = $(todos[i]).attr('data-tab-content');
+    let listLength = $(todos[i]).children().length;
+  }
+
+  for (let i = 0; i < dataTab.length; i++) {
+    let dataTabElement = $(dataTab[i]).attr('data-tab');
+  }
+
 });
