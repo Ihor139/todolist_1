@@ -27,12 +27,13 @@ $(document).ready(function () {
   // get length of content list
 
   let todos = document.querySelectorAll('.todo-list');
-  let dataTab = $(document).find('.tab-btn-name').parent();
-
+ 
   for (let i = 0; i < todos.length; i++) {
     let dataContent = $(todos[i]).attr('data-tab-content');
     let listLength = $(todos[i]).children().length;
   }
+  // get data attr of tab button
+  let dataTab = $(document).find('.tab-btn-name').parent();
 
   for (let i = 0; i < dataTab.length; i++) {
     let dataTabElement = $(dataTab[i]).attr('data-tab');
