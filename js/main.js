@@ -14,7 +14,7 @@ $(document).ready(function () {
     $(document).find("[data-tab-content]").hide();
     $(document).find("[data-tab-content=" + tabCurrent + "]").show();
 
-    // change title annd counter
+    // change title and counter
     $(document).find('[data-tab-title]').html(titleCurrent).css('color', colorCurrent);
     $(document).find('[data-title-counter]').html(counterCurrent).css('color', colorCurrent);
     $(document).find("[data-tab-content=" + tabCurrent + "]").show();
@@ -24,19 +24,31 @@ $(document).ready(function () {
     // $(document).find('[data-tab-content]').append('<div class="content">' + content + '</div>');
   });
 
-  // get length of content list
 
   let todos = document.querySelectorAll('.todo-list');
- 
-  for (let i = 0; i < todos.length; i++) {
-    let dataContent = $(todos[i]).attr('data-tab-content');
-    let listLength = $(todos[i]).children().length;
-  }
-  // get data attr of tab button
   let dataTab = $(document).find('.tab-btn-name').parent();
 
-  for (let i = 0; i < dataTab.length; i++) {
-    let dataTabElement = $(dataTab[i]).attr('data-tab');
-  }
+  // console.log(todos.item());
+  // let dataContent, listLength, dataTabElement;
+  // dataContent = $(this).attr('data-tab-content');
+  // listLength = $(this).children().length;
 
+  if ($(todos).length != 0) {
+
+
+
+
+
+
+    // get length of content list
+    // let dataContent = todos.map((elem) => elem.attr('data-tab-content'));
+    // let listLength = $(todos).map(() => $(this).children().length);
+    // console.log(dataContent);
+    // console.log(dataContent, listLength);
+
+
+    // get data attr of tab button
+    let dataTabElement = $(dataTab).map((elem) => elem);
+    console.log(dataTabElement)
+  };
 });
