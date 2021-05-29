@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Todo</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="css/nice-select.css">
   <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="css/reset.css" />
@@ -130,455 +131,87 @@
           </div>
           <!-- tabs form dashboard -->
           <ul class="todo-list __active" data-tab-content="today">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                today 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    today name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                today 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    today name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
 
           <ul class="todo-list" data-tab-content="all">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                all 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    Scheduled name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                all 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
 
           <ul class="todo-list" data-tab-content="scheduled">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                Scheduled 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                Scheduled 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
 
           <ul class="todo-list" data-tab-content="not-fulfilled">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                Not fulfilled 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                Not fulfilled 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
           <!-- tabs form tab-list -->
 
           <ul class="todo-list" data-tab-content="inbox">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                inbox 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    today name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                inbox 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    today name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
 
           <ul class="todo-list" data-tab-content="signal">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                signal 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    signal name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                signal 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
 
           <ul class="todo-list" data-tab-content="garden">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                garden 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                garden 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
 
           <ul class="todo-list" data-tab-content="work">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-               work 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                work 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
-          
+
           <ul class="todo-list" data-tab-content="home">
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                home 1
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 1
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
-            <li class="todo-item">
-              <div class="todo-item-check completed-todo __active">
-                <i class="far fa-check-circle"></i>
-              </div>
-              <div class="todo-item-check uncompleted-todo">
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="todo-item-text font--middle--regular">
-                home 2
-                <span class="todo-item-info"><i class="fas fa-info"></i></span>
-              </div>
-              <div class="popup-container">
-                <div class="popup-info">
-                  <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="todo-item-text font--middle--regular">
-                    all name 2
-                  </div>
-                  <span>info todo</span>
-                </div>
-              </div>
-            </li>
+
           </ul>
-
-
-
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup popup__add-task">
+    <div class="popup__container">
+      <div class="popup__content">
+        <form action="javascript:void(0)" class="popup__task">
+          <div class="popup__row">
+            <div class="popup__name">
+              <input type="text" class="name_of_task" placeholder="Type name here" data-name="name_of_task">
+            </div>
+            <div class="popup__tab">
+              <select name="list_of_tabs" id="list_og_tabs" data-tabs="list_of_tabs" class="popup__select">
+                <option value="">Choose task list</option>
+                <option value="today">Today</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="all">All</option>
+                <option value="not-fulfilled">Not fulfilled</option>
+                <option value="inbox">Inbox</option>
+                <option value="signal">Signal</option>
+                <option value="garden">Garden</option>
+                <option value="work">Work</option>
+                <option value="home">home</option>
+              </select>
+            </div>
+          </div>
+          <div class="popup__row">
+            <div class="popup__info--add">
+              <textarea name="" data-info="info_of_task" placeholder="Type your text here"></textarea>
+            </div>
+          </div>
+          <div class="popup__row">
+            <div class="popup__btn">
+              <button class="popup__close">Cansel</button>
+              <button type="submit" class="submit_btn">Add task</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase.js"></script>
   <script src="js/main.js"></script>
 </body>
 

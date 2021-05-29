@@ -94,7 +94,6 @@
   width: 10px;
   height: 10px;
   margin: 0 5px;
-  background-color: yellow;
   border-radius: 50%;
 }
 .todo-app-name span:first-child {
@@ -275,7 +274,7 @@
   display: flex;
   align-items: center;
 }
-.dashboard-name{
+.dashboard-name {
   display: block;
 }
 .menu-tab-counter {
@@ -346,7 +345,7 @@
 }
 
 .todo-list {
-    display: none;
+  display: none;
   position: relative;
   height: 100%;
   padding-right: 15px;
@@ -355,7 +354,7 @@
   scrollbar-color: rgb(150, 150, 150) rgb(204, 204, 204);
 }
 .todo-list.__active {
-    display: block;
+  display: block;
 }
 
 .todo-list::-webkit-scrollbar {
@@ -407,10 +406,15 @@
   display: flex;
 }
 
-.todo-item-text {
+.todo-item-text{
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.todo-info-text{
+  font-size: 16px;
+  font-family: 'Recursive';
 }
 
 .todo-item-info {
@@ -430,35 +434,39 @@
   color: rgb(255, 0, 0);
 }
 
-.popup-container {
+/* popups */
+
+.popup__task-info {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 99;
   visibility: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(45, 45, 45, 0.65);
   border-radius: 10px;
 }
-.popup-container.__active {
+.popup__task-info.__active {
   visibility: visible;
+  display: flex;
 }
 
-.popup-info {
+.popup__info {
   position: relative;
   padding: 36px;
-  min-width: 300px;
+  min-width: 450px;
   min-height: 200px;
   max-width: 500px;
-  background-color: rgba(207, 207, 207, 0.8);
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
 }
-.popup-close {
+.popup__close {
   position: absolute;
   top: 0;
   right: 0;
@@ -466,6 +474,165 @@
   cursor: pointer;
   transition: all 0.3s;
 }
-.popup-close:hover {
+.popup__close:hover {
   color: rgb(255, 0, 0);
+}
+
+/* Popup add */
+
+.popup {
+  visibility: hidden;
+  display: none;
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(45, 45, 45, 0.85);
+}
+.popup.__active {
+  visibility: visible;
+  display: flex;
+}
+
+.popup__container,
+.popup__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popup__task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 700px;
+  padding: 32px 15px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.popup__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 32px;
+}
+.popup__row:last-child {
+  margin-bottom: 0;
+}
+
+.popup__name {
+  width: 100%;
+  margin-right: 20px;
+}
+.popup__name input {
+  font-family: "Recursive";
+  font-size: 16px;
+  line-height: normal;
+  width: 100%;
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(151, 151, 151, 0.652);
+}
+.popup__name input.invalid {
+  color: rgba(255, 0, 0, 0.652);
+  border-bottom: 1px solid rgba(255, 0, 0, 0.652);
+}
+.popup__tab {
+  width: 100%;
+  display: inline-block;
+  justify-content: center;
+  border-bottom: 1px solid rgba(151, 151, 151, 0.652);
+}
+.popup__tab.invalid {
+
+  color: rgba(255, 0, 0, 0.652);
+  border-bottom: 1px solid rgba(255, 0, 0, 0.652);
+}
+
+.popup__info--add {
+  width: 100%;
+  height: 100%;
+}
+.popup__info--add textarea {
+  font-family: "Recursive";
+  font-size: 16px;
+  line-height: normal;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  padding: 10px 16px;
+  border: 1px solid rgba(151, 151, 151, 0.652);
+}
+.popup__info--add textarea.invalid {
+  color: rgba(255, 0, 0, 0.652);
+  border: 1px solid rgba(255, 0, 0, 0.652);
+}
+
+.popup__btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.popup__btn button {
+  position: unset;
+  padding: 5px 15px;
+  min-width: 115px;
+  color: rgb(116, 116, 116);
+  background-color: rgba(207, 207, 207, 0.562);
+  transition: 0.3s;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: "Recursive";
+}
+
+.popup__btn button:hover {
+  cursor: pointer;
+  color: #000;
+  background-color: rgba(223, 223, 223, 0.95);
+}
+
+/* select field */
+
+.nice-select {
+  font-family: "Recursive";
+  font-size: 16px;
+  line-height: 16px;
+  padding: 7px 10px;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  outline: none;
+  color: #74646e;
+  background: transparent;
+  border-color: unset;
+  border: 0;
+  border-radius: 4px;
+}
+.nice-select.open .list {
+  font-family: "Recursive";
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.nice-select .option {
+  font-family: "Recursive";
+  font-size: 16px;
+}
+.nice-select .option:hover,
+.nice-select .option.focus,
+.nice-select .option.selected.focus {
+  font-size: 18px;
+  color: #000;
+}
+
+
+.popup__select.invalid{
+  border-color: red;
 }
