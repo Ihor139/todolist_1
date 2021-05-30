@@ -11,24 +11,16 @@ $(document).ready(function () {
     $(this).addClass('__active');
 
     // hide-show tab content
-    $(document).find("[data-tab-content]").hide();
+    $(document).find("[data-tab-content]").removeClass('__active').hide();
     $(document).find("[data-tab-content=" + tabCurrent + "]").show();
 
     // change title and counter
+
     $(document).find('[data-tab-title]').html(titleCurrent).css('color', colorCurrent);
-    $(document).find('[data-title-counter]').html(counterCurrent).css('color', colorCurrent);
-    $(document).find("[data-tab-content=" + tabCurrent + "]").show();
+    // $(document).find('[data-title-counter]').html(counterCurrent).css('color', colorCurrent);
+    $(document).find("[data-tab-content=" + tabCurrent + "]").addClass('__active').show();
 
   });
-
-  let todos = document.querySelectorAll('.todo-list');
-  let dataTab = $(document).find('.tab-btn-name').parent();
-
-
-  if ($(todos).length != 0) {
-
-    let dataTabElement = $(dataTab).map(elem => elem);
-  };
 
   //open popup add task
 
@@ -63,7 +55,11 @@ $(document).ready(function () {
     create(this);
   })
 
+  //remove list
 
+  $('.todo-list-remove').on('click', function () {
+    removeList(this);
+  })
 
 
   // firebase connect and settings
@@ -100,6 +96,7 @@ $(document).ready(function () {
     }
 
     ref.push(todoItem);
+
   }
 
   function getData(data) {
@@ -116,7 +113,9 @@ $(document).ready(function () {
       let tabValue = todos[k].tabValue;
       let infoTask = todos[k].infoTask;
       createElement(nameTask, tabValue, infoTask)
+
     }
+
 
   }
 
@@ -139,7 +138,27 @@ $(document).ready(function () {
     })
   }
 
+  //check task length
+
+  function setTaskCounter(tabValue, todoItem) {
+    let todoCounters = document.querySelectorAll('[data-tab-counter]');
+
+    todoCounters.forEach(e => {
+      let parentAttr = e.closest('[data-tab]').getAttribute('data-tab').toLowerCase();
+
+      if (parentAttr === tabValue) {
+        // console.log(parentAttr, todoItem.closest('.todo-list').children.length);
+        let count = todoItem.closest('.todo-list').children.length;
+
+        e.textContent = count;
+      }
+    })
+  }
+
+  // create Task
+
   function createElement(nameTask, tabValue, infoTask) {
+
 
     // check-uncheck icon
     let checkIcoTick = document.createElement('i');
@@ -199,6 +218,27 @@ $(document).ready(function () {
     // filter todo items
 
     filterTodoItems(tabValue, todoItem);
+
+    // amount task
+
+    setTaskCounter(tabValue, todoItem)
+  }
+
+  //remove list
+
+  function removeList(removeBtn) {
+    let curentTabContentAttr = removeBtn.closest('.todo-list-wrapper').querySelector('.todo-list.__active').getAttribute('data-tab-content');
+    removeBtn.closest('.todo-list-wrapper').querySelector('.todo-list.__active').remove();
+    let tabBtns = document.querySelectorAll('[data-tab]')
+
+    tabBtns.forEach(e => {
+      let dataAttr = e.getAttribute('data-tab');
+
+      if (curentTabContentAttr === dataAttr) {
+        e.remove();
+      }
+
+    })
   }
 
 });

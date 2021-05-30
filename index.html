@@ -41,7 +41,7 @@
                 Today
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-                1
+                
               </div>
             </div>
             <div class="dashboard-item pd-15" data-tab="scheduled">
@@ -52,7 +52,7 @@
                 Scheduled
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-                2
+                
               </div>
             </div>
             <div class="dashboard-item pd-15" data-tab="all">
@@ -63,7 +63,7 @@
                 All
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-                3
+                
               </div>
             </div>
             <div class="dashboard-item pd-15" data-tab="not-fulfilled">
@@ -72,7 +72,7 @@
                 Not fulfilled
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-                4
+                
               </div>
             </div>
           </div>
@@ -82,31 +82,31 @@
                 <span class="tab-btn-name font--middle--regular" data-tab-name="title">
                   <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
                   Inbox</span>
-                <span class="btn-task-counter font--middle--bold">1</span>
+                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
               </div>
               <div class="todo-menu-tab-item" data-tab="signal">
                 <span class="tab-btn-name font--middle--regular" data-tab-name="title">
                   <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
                   Signal</span>
-                <span class="btn-task-counter font--middle--bold">2</span>
+                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
               </div>
               <div class="todo-menu-tab-item" data-tab="garden">
                 <span class="tab-btn-name font--middle--regular">
                   <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
                   Garden</span>
-                <span class="btn-task-counter font--middle--bold">3</span>
+                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
               </div>
               <div class="todo-menu-tab-item" data-tab="work">
                 <span class="tab-btn-name font--middle--regular">
                   <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
                   Work</span>
-                <span class="btn-task-counter font--middle--bold">5</span>
+                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
               </div>
               <div class="todo-menu-tab-item" data-tab="home">
                 <span class="tab-btn-name font--middle--regular">
                   <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
                   Home</span>
-                <span class="btn-task-counter font--middle--bold">6</span>
+                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
               </div>
             </ul>
           </div>
@@ -125,13 +125,10 @@
             <h2 class="tab-title font--large--bold tab-color" data-tab-title="title">
               Today
             </h2>
-            <div class="todo-counter font--large--bold" data-title-counter="task-counter">
-              1
-            </div>
+            <!-- <div class="todo-counter font--large--bold" data-title-counter="task-counter">
+            </div> -->
           </div>
-          <!-- tabs form dashboard -->
           <ul class="todo-list __active" data-tab-content="today">
-
           </ul>
 
           <ul class="todo-list" data-tab-content="all">
@@ -145,7 +142,6 @@
           <ul class="todo-list" data-tab-content="not-fulfilled">
 
           </ul>
-          <!-- tabs form tab-list -->
 
           <ul class="todo-list" data-tab-content="inbox">
 
@@ -166,6 +162,9 @@
           <ul class="todo-list" data-tab-content="home">
 
           </ul>
+
+          <div class="todo-list-remove">remove list</div>
+
         </div>
       </div>
     </div>

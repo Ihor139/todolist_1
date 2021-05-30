@@ -95,6 +95,7 @@
   height: 10px;
   margin: 0 5px;
   border-radius: 50%;
+  background-color: orange;
 }
 .todo-app-name span:first-child {
   margin-left: 0px;
@@ -371,6 +372,23 @@
   border: 3px solid rgb(150, 150, 150); /* creates padding around scroll thumb */
 }
 
+.todo-list-remove {
+  align-self: flex-end;
+  width: fit-content;
+  text-align: end;
+  padding: 0 15px;
+  box-shadow: 0 0 5px 0 #000;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Recursive";
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.todo-list-remove:hover {
+  color: red;
+}
+
 .todo-item {
   display: flex;
   align-items: center;
@@ -406,15 +424,15 @@
   display: flex;
 }
 
-.todo-item-text{
+.todo-item-text {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.todo-info-text{
+.todo-info-text {
   font-size: 16px;
-  font-family: 'Recursive';
+  font-family: "Recursive";
 }
 
 .todo-item-info {
@@ -549,7 +567,6 @@
   border-bottom: 1px solid rgba(151, 151, 151, 0.652);
 }
 .popup__tab.invalid {
-
   color: rgba(255, 0, 0, 0.652);
   border-bottom: 1px solid rgba(255, 0, 0, 0.652);
 }
@@ -632,7 +649,6 @@
   color: #000;
 }
 
-
-.popup__select.invalid{
+.popup__select.invalid {
   border-color: red;
 }
