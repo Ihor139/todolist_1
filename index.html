@@ -14,12 +14,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
   <link rel="manifest" href="img/favicon/site.webmanifest">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link rel="stylesheet" href="css/nice-select.css">
-  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-  <link rel="stylesheet" href="css/reset.css"/>
-  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body class="page-todo">
@@ -27,11 +27,13 @@
     <div class="todo-wrapper pd-15">
       <div class="todo-body">
         <div class="todo-menu-wrapper">
+          
           <div class="todo-app-name pd-15">
             <span></span>
             <span></span>
             <span></span>
           </div>
+
           <div class="todo-menu-search pd-15">
             <div class="search-container">
               <form action="">
@@ -40,84 +42,66 @@
               </form>
             </div>
           </div>
-          <div class="todo-menu-tabs-dashboard pd-15">
+
+          <div class="todo-menu-tabs-dashboard pd-15 data-tab-parent">
             <div class="dashboard-item __active pd-15" data-tab="today">
-              <div class="tab-btn-name dashboard-name font--middle--regular" data-tab-name="title">
+              <div class="tab-btn-name-wrapper dashboard-name font--middle--regular" data-tab-name="title">
                 <div class="tab-btn-icon">
                   <i class="far fa-calendar-alt"></i>
                 </div>
-                Today
+                <div class="tab-btn-name">Today</div>
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-
               </div>
             </div>
+
             <div class="dashboard-item pd-15" data-tab="scheduled">
-              <div class="tab-btn-name dashboard-name font--middle--regular" data-tab-name="title">
+              <div class="tab-btn-name-wrapper dashboard-name font--middle--regular" data-tab-name="title">
                 <div class="tab-btn-icon">
                   <i class="fas fa-hourglass"></i>
                 </div>
-                Scheduled
+                <div class="tab-btn-name"> Scheduled</div>
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-
               </div>
             </div>
+
             <div class="dashboard-item pd-15" data-tab="all">
-              <div class="tab-btn-name dashboard-name font--middle--regular" data-tab-name="title">
+              <div class="tab-btn-name-wrapper dashboard-name font--middle--regular" data-tab-name="title">
                 <div class="tab-btn-icon">
                   <i class="fas fa-box-open"></i>
                 </div>
-                All
+                <div class="tab-btn-name">All</div>
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-
               </div>
             </div>
+
             <div class="dashboard-item pd-15" data-tab="not-fulfilled">
-              <div class="tab-btn-name dashboard-name font--middle--regular" data-tab-name="title">
+              <div class="tab-btn-name-wrapper dashboard-name font--middle--regular" data-tab-name="title">
                 <div class="tab-btn-icon"><i class="fas fa-flag"></i></div>
-                Not fulfilled
+                <div class="tab-btn-name">Not fulfilled</div>
               </div>
               <div class="btn-task-counter font--large--bold" data-tab-counter="task-counter">
-
               </div>
             </div>
+
           </div>
-          <div class="todo-menu-tabs-list-container pd-15">
-            <ul class="todo-menu-tabs-list">
-              <div class="todo-menu-tab-item" data-tab="inbox">
-                <span class="tab-btn-name font--middle--regular" data-tab-name="title">
+
+          <div class="todo-menu-tabs-list-container pd-15 data-tab-parent" >
+            <div class="todo-menu-tabs-list">
+
+              <!-- <div class="todo-menu-tab-item" data-tab="inbox">
+                <span class="tab-btn-name-wrapper font--middle--regular" data-tab-name="title">
                   <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
-                  Inbox</span>
+                  <span class="tab-btn-name">Inbox</span>
                 <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
-              </div>
-              <div class="todo-menu-tab-item" data-tab="signal">
-                <span class="tab-btn-name font--middle--regular" data-tab-name="title">
-                  <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
-                  Signal</span>
-                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
-              </div>
-              <div class="todo-menu-tab-item" data-tab="garden">
-                <span class="tab-btn-name font--middle--regular">
-                  <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
-                  Garden</span>
-                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
-              </div>
-              <div class="todo-menu-tab-item" data-tab="work">
-                <span class="tab-btn-name font--middle--regular">
-                  <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
-                  Work</span>
-                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
-              </div>
-              <div class="todo-menu-tab-item" data-tab="home">
-                <span class="tab-btn-name font--middle--regular">
-                  <span class="tab-btn-icon"><i class="fas fa-list"></i></span>
-                  Home</span>
-                <span class="btn-task-counter font--middle--bold" data-tab-counter="task-counter"></span>
-              </div>
-            </ul>
+              </div> -->
+
+
+            </div>
           </div>
+
           <div class="todo-menu-add-list pd-15">
             <div class="add-list-btn">
               <span class="add-list-ico"><i class="fas fa-plus"></i></span>
@@ -125,6 +109,7 @@
             </div>
           </div>
         </div>
+
         <div class="todo-list-wrapper pd-15">
           <div class="todo-list-add">
             <span class="add-btn"><i class="fas fa-plus"></i></span>
@@ -136,43 +121,25 @@
             <!-- <div class="todo-counter font--large--bold" data-title-counter="task-counter">
             </div> -->
           </div>
+          
           <ul class="todo-list __active" data-tab-content="today">
+            
           </ul>
-
+          
           <ul class="todo-list" data-tab-content="all">
-
+            
           </ul>
-
+          
           <ul class="todo-list" data-tab-content="scheduled">
-
+            
           </ul>
-
+          
           <ul class="todo-list" data-tab-content="not-fulfilled">
-
+            
           </ul>
-
-          <ul class="todo-list" data-tab-content="inbox">
-
-          </ul>
-
-          <ul class="todo-list" data-tab-content="signal">
-
-          </ul>
-
-          <ul class="todo-list" data-tab-content="garden">
-
-          </ul>
-
-          <ul class="todo-list" data-tab-content="work">
-
-          </ul>
-
-          <ul class="todo-list" data-tab-content="home">
-
-          </ul>
-
+          
+          
           <div class="todo-list-remove">remove list</div>
-
         </div>
       </div>
     </div>
@@ -192,11 +159,7 @@
                 <option value="scheduled">Scheduled</option>
                 <option value="all">All</option>
                 <option value="not-fulfilled">Not fulfilled</option>
-                <option value="inbox">Inbox</option>
-                <option value="signal">Signal</option>
-                <option value="garden">Garden</option>
-                <option value="work">Work</option>
-                <option value="home">home</option>
+
               </select>
             </div>
           </div>
@@ -210,6 +173,21 @@
               <button class="popup__close">Cansel</button>
               <button type="submit" class="submit_btn">Add task</button>
             </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="popup popup__add-list">
+    <div class="popup__container">
+      <div class="popup__content">
+        <form action="javascript:void(0)" class="popup__list">
+          <div class="popup__row">
+            <div class="popup__input">
+              <input type="text" placeholder="Text name of list">
+            </div>
+            <button type="submit" class="js_add-list-btn">Add list
+            </button>
           </div>
         </form>
       </div>

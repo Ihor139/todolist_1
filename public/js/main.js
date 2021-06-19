@@ -65,6 +65,14 @@ $(document).ready(function () {
   // firebase connect and settings
 
   let firebaseConfig = {
+    // apiKey: "AIzaSyBxmjIAU3Awc186B8dF-D17YVZ464T3O5k",
+    // authDomain: "todolist-ri.firebaseapp.com",
+    // databaseURL: "https://todolist-ri-default-rtdb.europe-west1.firebasedatabase.app",
+    // projectId: "todolist-ri",
+    // storageBucket: "todolist-ri.appspot.com",
+    // messagingSenderId: "187255274312",
+    // appId: "1:187255274312:web:a6a72240c38b9fcf5b117d"
+
     apiKey: "AIzaSyBxmjIAU3Awc186B8dF-D17YVZ464T3O5k",
     authDomain: "todolist-ri.firebaseapp.com",
     databaseURL: "https://todolist-ri-default-rtdb.europe-west1.firebasedatabase.app",
@@ -72,12 +80,13 @@ $(document).ready(function () {
     storageBucket: "todolist-ri.appspot.com",
     messagingSenderId: "187255274312",
     appId: "1:187255274312:web:a6a72240c38b9fcf5b117d"
+
   };
 
   firebase.initializeApp(firebaseConfig);
   let database = firebase.database();
 
-  let ref = database.ref('todolist/list');
+  let ref = database.ref('todolist');
   ref.on('value', getData, errData);
 
 
@@ -95,28 +104,49 @@ $(document).ready(function () {
       infoTask: infoValue,
     }
 
-    ref.push(todoItem);
+
+    let todolists = document.querySelectorAll('.todo-list');
+
+    todolists.forEach(e => {
+      let listAttr = e.getAttribute('data-tab-content').toLowerCase();
+
+      if (listAttr === tabValue) {
+        ref = database.ref("todolist/list-" + tabValue)
+        ref.push(todoItem);
+      }
+    })
+
+
+
+
 
   }
 
   function getData(data) {
-    let todos = data.val();
-    let keys = Object.keys(todos);
+    let todolists = data.val();
+    let keys = Object.keys(todolists);
     let todoItems = document.querySelectorAll('.todo-item');
 
     for (let i = 0; i < todoItems.length; i++) {
       todoItems[i].remove();
     }
+
+
     for (let i = 0; i < keys.length; i++) {
       let k = keys[i];
-      let nameTask = todos[k].nameTask;
-      let tabValue = todos[k].tabValue;
-      let infoTask = todos[k].infoTask;
-      createElement(nameTask, tabValue, infoTask)
+      let listName = Object.keys(todolists[k]);
 
+      for (let i = 0; i < listName.length; i++) {
+        let taskKey = listName[i];
+
+        let nameTask = todolists[k][taskKey].nameTask;
+        let tabValue = todolists[k][taskKey].tabValue;
+        let infoTask = todolists[k][taskKey].infoTask;
+
+        createElement(nameTask, tabValue, infoTask)
+
+      }
     }
-
-
   }
 
   function errData(err) {

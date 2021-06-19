@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-  $("[data-tab]").on("click", function (e) {
+  $(".data-tab-parent").on("click", '[data-tab]', function (e) {
     let tabCurrent = $(this).attr("data-tab"),
-      counterCurrent = $(this).children(".btn-task-counter").text().trim(),
-      titleCurrent = $(this).children(".tab-btn-name").text().trim(),
+      counterCurrent = $(this).find(".btn-task-counter").text().trim(),
+      titleCurrent = $(this).find(".tab-btn-name").text().trim(),
       colorCurrent = $(this).find(".tab-btn-icon").css("background-color");
 
     // change active element
@@ -26,6 +26,12 @@ $(document).ready(function () {
 
   $('.add-btn').on('click', function (e) {
     $('.popup__add-task').addClass('__active');
+  })
+
+  //open popup add task
+
+  $('.add-list-btn').on('click', function (e) {
+    $('.popup__add-list').addClass('__active');
   })
 
   //open popup info task
@@ -55,7 +61,25 @@ $(document).ready(function () {
     create(this);
   })
 
+  // add list
+
+  $('.js_add-list-btn').on('click', function () {
+
+    let newNameList = $(this).closest('.popup').find('input').val()
+    createTaskList(newNameList);
+
+    $(this).closest('.popup').find('input').val('')
+    $(this).closest('.popup').removeClass('__active');
+  })
+
   //remove list
+
+  //   if($('[data-tab-content]' === 'today')) {console.log(11111);
+  //   $('.todo-list-remove').hide()
+  // }else(
+  //   $('.todo-list-remove').show()
+  // )
+
 
   $('.todo-list-remove').on('click', function () {
     removeList(this);
@@ -65,13 +89,6 @@ $(document).ready(function () {
   // firebase connect and settings
 
   let firebaseConfig = {
-    // apiKey: "AIzaSyBxmjIAU3Awc186B8dF-D17YVZ464T3O5k",
-    // authDomain: "todolist-ri.firebaseapp.com",
-    // databaseURL: "https://todolist-ri-default-rtdb.europe-west1.firebasedatabase.app",
-    // projectId: "todolist-ri",
-    // storageBucket: "todolist-ri.appspot.com",
-    // messagingSenderId: "187255274312",
-    // appId: "1:187255274312:web:a6a72240c38b9fcf5b117d"
 
     apiKey: "AIzaSyBxmjIAU3Awc186B8dF-D17YVZ464T3O5k",
     authDomain: "todolist-ri.firebaseapp.com",
@@ -111,39 +128,49 @@ $(document).ready(function () {
       let listAttr = e.getAttribute('data-tab-content').toLowerCase();
 
       if (listAttr === tabValue) {
-        ref = database.ref("todolist/list-" + tabValue)
+        ref = database.ref("todolist/" + tabValue)
         ref.push(todoItem);
       }
     })
-
-
-
-
-
   }
 
   function getData(data) {
     let todolists = data.val();
     let keys = Object.keys(todolists);
     let todoItems = document.querySelectorAll('.todo-item');
+    let todoTabsName = document.querySelectorAll('.todo-menu-tab-item');
+    let todoLists = document.querySelectorAll('.todo-list-new');
+    let options = document.querySelectorAll('.new_option');
 
-    for (let i = 0; i < todoItems.length; i++) {
-      todoItems[i].remove();
+    function removeEl() {
+      for (let i = 0; i < arguments.length; i++) {
+        let currentArr = arguments[i];
+
+        for (let i = 0; i < currentArr.length; i++) {
+          console.log(currentArr[i]);
+          currentArr[i].remove();
+        }
+      }
     }
 
+    removeEl(todoItems, todoTabsName, todoLists, options);
 
     for (let i = 0; i < keys.length; i++) {
-      let k = keys[i];
-      let listName = Object.keys(todolists[k]);
+      let key = keys[i];
+
+      createList(key);
+      addOptionSelect(key);
+
+      let listName = Object.keys(todolists[key]);
 
       for (let i = 0; i < listName.length; i++) {
         let taskKey = listName[i];
 
-        let nameTask = todolists[k][taskKey].nameTask;
-        let tabValue = todolists[k][taskKey].tabValue;
-        let infoTask = todolists[k][taskKey].infoTask;
+        let nameTask = todolists[key][taskKey].nameTask;
+        let tabValue = todolists[key][taskKey].tabValue;
+        let infoTask = todolists[key][taskKey].infoTask;
 
-        createElement(nameTask, tabValue, infoTask)
+        createTodo(nameTask, tabValue, infoTask)
 
       }
     }
@@ -158,7 +185,6 @@ $(document).ready(function () {
   function filterTodoItems(tabValue, todoItem) {
 
     let todolists = document.querySelectorAll('.todo-list');
-
     todolists.forEach(e => {
       let listAttr = e.getAttribute('data-tab-content').toLowerCase();
 
@@ -177,7 +203,6 @@ $(document).ready(function () {
       let parentAttr = e.closest('[data-tab]').getAttribute('data-tab').toLowerCase();
 
       if (parentAttr === tabValue) {
-        // console.log(parentAttr, todoItem.closest('.todo-list').children.length);
         let count = todoItem.closest('.todo-list').children.length;
 
         e.textContent = count;
@@ -185,9 +210,52 @@ $(document).ready(function () {
     })
   }
 
+  //create new list
+
+  function createList(key) {
+    let ul = document.createElement('ul');
+
+    ul.classList.add('todo-list', 'todo-list-new')
+    ul.setAttribute('data-tab-content', key)
+    if (key !== "today" && key !== "scheduled" && key !== "all" && key !== "not-fulfilled")
+      $('.todo-list-wrapper').append(ul);
+    createTabName(key);
+  }
+
+  function createTabName(key) {
+
+    let div = document.createElement('div');
+    div.classList.add('todo-menu-tab-item')
+    div.setAttribute('data-tab', key)
+    if (key !== "today" && key !== "scheduled" && key !== "all" && key !== "not-fulfilled")
+      $('.todo-menu-tabs-list').append(div)
+
+    let spanNameWrapper = document.createElement('span');
+    spanNameWrapper.classList.add('tab-btn-name-wrapper', 'font--middle--regular')
+    div.appendChild(spanNameWrapper);
+
+    let spanIco = document.createElement('span');
+    spanIco.classList.add('tab-btn-icon');
+    spanNameWrapper.appendChild(spanIco);
+
+    let icon = document.createElement('i');
+    icon.classList.add('fas', 'fa-list');
+    spanIco.appendChild(icon);
+
+    let spanName = document.createElement('span');
+    spanName.classList.add('tab-btn-name');
+    spanName.textContent = key;
+    spanNameWrapper.appendChild(spanName);
+
+    let spanCounter = document.createElement('span');
+    spanCounter.classList.add('btn-task-counter', 'font--middle--bold')
+    spanCounter.setAttribute('data-tab-counter', 'task-counter')
+    div.appendChild(spanCounter);
+  }
+
   // create Task
 
-  function createElement(nameTask, tabValue, infoTask) {
+  function createTodo(nameTask, tabValue, infoTask) {
 
 
     // check-uncheck icon
@@ -252,6 +320,24 @@ $(document).ready(function () {
     // amount task
 
     setTaskCounter(tabValue, todoItem)
+    // createTaskList();
+  }
+
+  //add option to select
+
+  function addOptionSelect(tabname) {
+    let select = document.querySelector('select[name="list_of_tabs"]')
+    if (tabname !== "today" && tabname !== "scheduled" && tabname !== "all" && tabname !== "not-fulfilled") {
+      let option = document.createElement('option');
+      option.setAttribute('value', tabname);
+      option.classList.add('new_option');
+      option.textContent = tabname;
+      select.appendChild(option)
+
+    }
+    setTimeout(function () {
+      $(select).niceSelect('update')
+    }, 100)
   }
 
   //remove list
@@ -266,9 +352,22 @@ $(document).ready(function () {
 
       if (curentTabContentAttr === dataAttr) {
         e.remove();
+        ref = database.ref('todolist/' + dataAttr)
+        ref.remove();
       }
+      $('[data-tab="today"]').addClass('__active')
+      $('[data-tab-content ="today"]').addClass('__active')
+      $('[data-tab-title]').html('Today')
+      $('[data-tab-title]').css('color', 'rgb(0, 132, 255)')
 
     })
+  }
+
+  //create list
+
+  function createTaskList(newNameList) {
+    ref = database.ref('todolist/' + newNameList)
+    ref.push('');
   }
 
 });
