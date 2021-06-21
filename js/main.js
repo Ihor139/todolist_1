@@ -74,14 +74,11 @@ $(document).ready(function () {
 
   //remove list
 
-  //   if($('[data-tab-content]' === 'today')) {console.log(11111);
-  //   $('.todo-list-remove').hide()
-  // }else(
-  //   $('.todo-list-remove').show()
-  // )
+  $('.todo-tasks-remove').on('click', function () {
+    removeTasks(this);
+  })
 
-
-  $('.todo-list-remove').on('click', function () {
+  $('.todo-menu-tabs-list').on('click', '.tab-btn-remove', function () {
     removeList(this);
   })
 
@@ -147,7 +144,6 @@ $(document).ready(function () {
         let currentArr = arguments[i];
 
         for (let i = 0; i < currentArr.length; i++) {
-          console.log(currentArr[i]);
           currentArr[i].remove();
         }
       }
@@ -242,15 +238,24 @@ $(document).ready(function () {
     icon.classList.add('fas', 'fa-list');
     spanIco.appendChild(icon);
 
-    let spanName = document.createElement('span');
-    spanName.classList.add('tab-btn-name');
-    spanName.textContent = key;
-    spanNameWrapper.appendChild(spanName);
-
     let spanCounter = document.createElement('span');
     spanCounter.classList.add('btn-task-counter', 'font--middle--bold')
     spanCounter.setAttribute('data-tab-counter', 'task-counter')
     div.appendChild(spanCounter);
+
+    let btnRemove = document.createElement('span');
+    btnRemove.classList.add('tab-btn-remove');
+
+    let icoRemove = document.createElement('i');
+    icoRemove.classList.add('far', 'fa-trash-alt');
+    btnRemove.appendChild(icoRemove);
+
+    let spanName = document.createElement('span');
+    spanName.classList.add('tab-btn-name');
+    spanName.textContent = key;
+    spanNameWrapper.appendChild(spanName);
+    div.appendChild(btnRemove);
+
   }
 
   // create Task
@@ -342,25 +347,41 @@ $(document).ready(function () {
 
   //remove list
 
+  function removeTasks(removeBtn) {
+
+    let currentTabContent = removeBtn.closest('.todo-list-wrapper').querySelector('.todo-list.__active').getAttribute('data-tab-content');
+
+    let rootRef = firebase.database().ref("todolist/" + currentTabContent);
+
+    rootRef.once("value")
+      .then(snapshot => {
+        snapshot.forEach(snapChild => {
+          let pkey = snapChild.key;
+          let val = snapChild.val();
+          if (val !== '') {
+            snapChild.ref.remove()
+          }
+        })
+      })
+  }
+
   function removeList(removeBtn) {
-    let curentTabContentAttr = removeBtn.closest('.todo-list-wrapper').querySelector('.todo-list.__active').getAttribute('data-tab-content');
-    removeBtn.closest('.todo-list-wrapper').querySelector('.todo-list.__active').remove();
-    let tabBtns = document.querySelectorAll('[data-tab]')
 
-    tabBtns.forEach(e => {
-      let dataAttr = e.getAttribute('data-tab');
+    let currentList = removeBtn.closest('.todo-menu-tab-item').getAttribute('data-tab');
 
-      if (curentTabContentAttr === dataAttr) {
-        e.remove();
-        ref = database.ref('todolist/' + dataAttr)
-        ref.remove();
-      }
-      $('[data-tab="today"]').addClass('__active')
-      $('[data-tab-content ="today"]').addClass('__active')
-      $('[data-tab-title]').html('Today')
-      $('[data-tab-title]').css('color', 'rgb(0, 132, 255)')
+    console.log(currentList);
+    let rootRef = firebase.database().ref("todolist/" + currentList);
 
-    })
+    rootRef.once("value")
+      .then(snapshot => {
+        snapshot.ref.remove()
+      })
+
+    $('[data-tab="today"]').addClass('__active')
+    $('[data-tab-content ="today"]').addClass('__active')
+    $('[data-tab-title]').html('Today')
+    $('[data-tab-title]').css('color', 'rgb(0, 132, 255)')
+
   }
 
   //create list
