@@ -82,6 +82,14 @@ $(document).ready(function () {
     removeList(this);
   })
 
+  // check task completed
+
+  $('.todo-list-inner').on('click', 'i', function () {
+    $(this).toggleClass('_active')
+    console.log(this);
+    // setStatusTask(this);
+  })
+
 
   // firebase connect and settings
 
@@ -113,6 +121,7 @@ $(document).ready(function () {
     let infoValue = elBtn.closest('form').querySelector('textarea').value;
 
     const todoItem = {
+      status: false,
       nameTask: nameValue,
       tabValue: tabValue,
       infoTask: infoValue,
@@ -162,11 +171,12 @@ $(document).ready(function () {
       for (let i = 0; i < listName.length; i++) {
         let taskKey = listName[i];
 
+        let status = todolists[key][taskKey].status;
         let nameTask = todolists[key][taskKey].nameTask;
         let tabValue = todolists[key][taskKey].tabValue;
         let infoTask = todolists[key][taskKey].infoTask;
 
-        createTodo(nameTask, tabValue, infoTask)
+        createTodo(nameTask, tabValue, infoTask, status)
 
       }
     }
@@ -206,15 +216,23 @@ $(document).ready(function () {
     })
   }
 
-  //create new list
+  
+  //create empty list to  firebase
+  
+  function createTaskList(newNameList) {
+    ref = database.ref('todolist/' + newNameList)
+    ref.push('');
+  }
 
+  //create new list from firebase
+  
   function createList(key) {
     let ul = document.createElement('ul');
 
     ul.classList.add('todo-list', 'todo-list-new')
     ul.setAttribute('data-tab-content', key)
     if (key !== "today" && key !== "scheduled" && key !== "all" && key !== "not-fulfilled")
-      $('.todo-list-wrapper').append(ul);
+      $('.todo-list-inner').append(ul);
     createTabName(key);
   }
 
@@ -260,19 +278,7 @@ $(document).ready(function () {
 
   // create Task
 
-  function createTodo(nameTask, tabValue, infoTask) {
-
-
-    // check-uncheck icon
-    let checkIcoTick = document.createElement('i');
-    checkIcoTick.classList.add('far', 'fa-check-circle');
-
-    let checkIcoX = document.createElement('i');
-    checkIcoX.classList.add('fas', 'fa-times');
-
-    let itemCheck = document.createElement('div');
-    itemCheck.classList.add('todo-item-check');
-    itemCheck.appendChild(checkIcoTick, checkIcoX);
+  function createTodo(nameTask, tabValue, infoTask, status) {
 
     // info icon
 
@@ -283,38 +289,66 @@ $(document).ready(function () {
     infoBtn.classList.add('todo-item-info')
     infoBtn.appendChild(infoIcon);
 
+    // check-uncheck icon
+    let checkIcoTick = document.createElement('i');
+    checkIcoTick.classList.add('far', 'fa-check-circle');
+    checkIcoTick.classList.add('_active');
+
+    let checkIcoX = document.createElement('i');
+    checkIcoX.classList.add('fas', 'fa-times');
+
+    let uncheckIcoX = document.createElement('i');
+    uncheckIcoX.classList.add('far', 'fa-times-circle');
+
+    let itemCheck = document.createElement('div');
+    itemCheck.classList.add('todo-item-btns');
+    itemCheck.appendChild(checkIcoTick);
+    itemCheck.appendChild(uncheckIcoX);
+    itemCheck.appendChild(infoBtn);
+
+    //remove task btn
+
+    let delIco = document.createElement('i');
+    delIco.classList.add('far', 'fa-trash-alt');
+
+    let delBtn = document.createElement('div')
+    delBtn.classList.add('remove-task');
+    delBtn.append(delIco);
+
     // title -itemName
 
     let itemName = document.createElement('div')
     itemName.classList.add('todo-item-text', 'font--middle--regular');
     itemName.textContent = nameTask;
-    itemName.append(infoBtn);
-
+    itemName.append(delBtn);
+    
     // info popup
-
+    
     let infoTitle = document.createElement('div');
     infoTitle.classList.add('todo-info-title', 'font--middle--regular');
     infoTitle.textContent = nameTask;
-
+    
     let infoText = document.createElement('div');
     infoText.classList.add('todo-info-text');
     infoText.textContent = infoTask;
-
+    
     let infoClose = document.createElement('div');
     infoClose.classList.add('popup__close');
     infoClose.appendChild(checkIcoX);
-
+    
     let infoWrap = document.createElement('div');
     infoWrap.classList.add('popup__info');
     infoWrap.append(infoTitle, infoClose, infoText);
-
+    
     let infoBody = document.createElement('div');
     infoBody.classList.add('popup', 'popup__task-info');
-
+    
     infoBody.append(infoWrap);
-
+    
     let todoItem = document.createElement('li');
     todoItem.classList.add('todo-item');
+    todoItem.setAttribute('data-status', status);
+    if (status) todoItem.classList.add('completed')
 
     todoItem.append(itemCheck, itemName, infoBody);
 
@@ -384,11 +418,9 @@ $(document).ready(function () {
 
   }
 
-  //create list
-
-  function createTaskList(newNameList) {
-    ref = database.ref('todolist/' + newNameList)
-    ref.push('');
+  function setStatusTask(that){
+      console.log(that.closest('todo-item'));
   }
+
 
 });

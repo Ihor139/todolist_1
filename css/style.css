@@ -62,7 +62,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  max-width: 1000px;
+  max-width: 1150px;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 0 15px 0 #000;
@@ -83,6 +83,9 @@
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
+}
+.todo-list-inner {
+  min-height: calc(100% - 120px);
 }
 
 .todo-app-name {
@@ -165,18 +168,7 @@
   color: aliceblue;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-.todo-menu-tab-item i.fa-trash-alt{
+.todo-menu-tab-item i.fa-trash-alt {
   display: flex;
   align-items: center;
   height: 30px;
@@ -184,14 +176,13 @@
   border-left: 1px solid #000;
 }
 
-.todo-menu-tab-item i.fa-trash-alt:hover{
+.todo-menu-tab-item i.fa-trash-alt:hover {
   color: red;
 }
 
-.tab-btn-name{
+.tab-btn-name {
   margin-right: 15px;
 }
-
 
 .todo-menu-tabs-dashboard
   .dashboard-item:nth-child(1)
@@ -218,17 +209,7 @@
   background-color: rgb(255, 0, 0);
 }
 
-
-
-
-
-
-
-
-
-
-
-.tab-btn-name-wrapper{
+.tab-btn-name-wrapper {
   width: 100%;
   color: rgb(66, 66, 66);
 }
@@ -390,14 +371,15 @@
   position: relative;
   flex-direction: column-reverse;
   justify-content: flex-end;
-  height: 100%;
+  height: 98%;
   padding-right: 15px;
   overflow-y: auto;
   scrollbar-width: thin; /* "auto" or "thin" */
   scrollbar-color: rgb(150, 150, 150) rgb(204, 204, 204);
 }
+
 .todo-list.__active {
-  display: flex !important;
+  display: block !important;
 }
 
 .todo-list::-webkit-scrollbar {
@@ -438,32 +420,53 @@
   padding: 10px 0;
 }
 
-.todo-item-check {
+.todo-item.completed{
+  color: rgb(12, 190, 12);
+}
+.todo-item.completed .todo-item-text {
+  text-decoration: line-through;
+}
+
+.todo-item.completed .todo-item-info{
+  border: 1px solid rgb(12, 190, 12);
+}
+
+.todo-item-btns {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
   font-size: 20px;
   margin-right: 10px;
   cursor: pointer;
   transition: all 0.3s;
 }
-.todo-item-check:hover {
+
+.todo-item-btns i.fa-check-circle {
+  display: none;
+  margin-right: 10px;
+  transition: .3s;
+}
+
+.todo-item-btns i.fa-check-circle._active{
+  display: block;
+}
+
+.todo-item-btns .fa-check-circle:hover {
   color: red;
 }
 
-.todo-item-check.uncompleted-todo {
+.todo-item-btns i.fa-times-circle {
   display: none;
+  margin-right: 10px;
+  transition: .3s;
 }
-.todo-item-check.uncompleted-todo.__active {
-  display: flex;
+
+.todo-item-btns i.fa-times-circle._active{
+  display: block;
 }
-.todo-item-check.completed-todo {
-  display: none;
-}
-.todo-item-check.completed-todo.__active {
-  display: flex;
+
+.todo-item-btns .fa-times-circle:hover {
+  color: red;
 }
 
 .todo-item-text {
@@ -477,20 +480,28 @@
   font-family: "Recursive";
 }
 
-.todo-item-info {
+.todo-item .todo-item-info {
+  font-size: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
-  border: 1px solid orange;
-  color: orange;
+  border: 2px solid #000;
   transition: all 0.3s;
   cursor: pointer;
 }
-.todo-item-info:hover {
-  border: 1px solid rgb(255, 0, 0);
+.todo-item .todo-item-info:hover {
+  border-color: rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
+}
+.todo-item .remove-task{
+  margin-left: 10px;
+  transition: .3s;
+  cursor: pointer;
+}
+.todo-item .remove-task:hover{
   color: rgb(255, 0, 0);
 }
 
