@@ -419,11 +419,14 @@
   border-bottom: 1px solid;
   padding: 10px 0;
 }
+.todo-item.hide{
+  display: none;
+}
 
 .todo-item.completed{
   color: rgb(12, 190, 12);
 }
-.todo-item.completed .todo-item-text {
+.todo-item.completed .todo-item-text-wrapper {
   text-decoration: line-through;
 }
 
@@ -469,7 +472,7 @@
   color: red;
 }
 
-.todo-item-text {
+.todo-item-text-wrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;

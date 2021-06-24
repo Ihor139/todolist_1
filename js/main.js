@@ -84,10 +84,24 @@ $(document).ready(function () {
 
   // check task completed
 
-  $('.todo-list-inner').on('click', 'i', function () {
+  $('.todo-list-inner').on('click', 'i.fa-check-circle', function () {
     $(this).toggleClass('_active')
-    console.log(this);
-    // setStatusTask(this);
+    $(this).closest('.todo-item').find('i.fa-times-circle').toggleClass('_active')
+    setStatusTask(this);
+  })
+
+  $('.todo-list-inner').on('click', 'i.fa-times-circle', function () {
+    $(this).toggleClass('_active')
+    $(this).closest('.todo-item').find('i.fa-check-circle').toggleClass('_active')
+    setStatusTask(this);
+  })
+
+  $('.todo-list-inner').on('click', '.remove-task', function () {
+    removeTask(this);
+  })
+
+  $('.search-container input').on('keyup', function () {
+    searchTask(this)
   })
 
 
@@ -216,16 +230,16 @@ $(document).ready(function () {
     })
   }
 
-  
+
   //create empty list to  firebase
-  
+
   function createTaskList(newNameList) {
     ref = database.ref('todolist/' + newNameList)
     ref.push('');
   }
 
   //create new list from firebase
-  
+
   function createList(key) {
     let ul = document.createElement('ul');
 
@@ -292,13 +306,14 @@ $(document).ready(function () {
     // check-uncheck icon
     let checkIcoTick = document.createElement('i');
     checkIcoTick.classList.add('far', 'fa-check-circle');
-    checkIcoTick.classList.add('_active');
+    if (!status) checkIcoTick.classList.add('_active')
 
     let checkIcoX = document.createElement('i');
     checkIcoX.classList.add('fas', 'fa-times');
 
     let uncheckIcoX = document.createElement('i');
     uncheckIcoX.classList.add('far', 'fa-times-circle');
+    if (status) uncheckIcoX.classList.add('_active')
 
     let itemCheck = document.createElement('div');
     itemCheck.classList.add('todo-item-btns');
@@ -320,37 +335,41 @@ $(document).ready(function () {
     let itemName = document.createElement('div')
     itemName.classList.add('todo-item-text', 'font--middle--regular');
     itemName.textContent = nameTask;
-    itemName.append(delBtn);
-    
+
+    let itemNameWrapper = document.createElement('div')
+    itemNameWrapper.classList.add('todo-item-text-wrapper', 'font--middle--regular');
+    itemNameWrapper.append(itemName);
+    itemNameWrapper.append(delBtn);
+
     // info popup
-    
+
     let infoTitle = document.createElement('div');
     infoTitle.classList.add('todo-info-title', 'font--middle--regular');
     infoTitle.textContent = nameTask;
-    
+
     let infoText = document.createElement('div');
     infoText.classList.add('todo-info-text');
     infoText.textContent = infoTask;
-    
+
     let infoClose = document.createElement('div');
     infoClose.classList.add('popup__close');
     infoClose.appendChild(checkIcoX);
-    
+
     let infoWrap = document.createElement('div');
     infoWrap.classList.add('popup__info');
     infoWrap.append(infoTitle, infoClose, infoText);
-    
+
     let infoBody = document.createElement('div');
     infoBody.classList.add('popup', 'popup__task-info');
-    
+
     infoBody.append(infoWrap);
-    
+
     let todoItem = document.createElement('li');
     todoItem.classList.add('todo-item');
     todoItem.setAttribute('data-status', status);
     if (status) todoItem.classList.add('completed')
 
-    todoItem.append(itemCheck, itemName, infoBody);
+    todoItem.append(itemCheck, itemNameWrapper, infoBody);
 
     // filter todo items
 
@@ -384,13 +403,12 @@ $(document).ready(function () {
   function removeTasks(removeBtn) {
 
     let currentTabContent = removeBtn.closest('.todo-list-wrapper').querySelector('.todo-list.__active').getAttribute('data-tab-content');
-
     let rootRef = firebase.database().ref("todolist/" + currentTabContent);
 
     rootRef.once("value")
       .then(snapshot => {
         snapshot.forEach(snapChild => {
-          let pkey = snapChild.key;
+          // let pkey = snapChild.key;
           let val = snapChild.val();
           if (val !== '') {
             snapChild.ref.remove()
@@ -418,9 +436,72 @@ $(document).ready(function () {
 
   }
 
-  function setStatusTask(that){
-      console.log(that.closest('todo-item'));
+  function setStatusTask(that) {
+
+    let currentTabContent = that.closest('.todo-list-wrapper').querySelector('.todo-list.__active').getAttribute('data-tab-content');
+    let currentTaskValue = that.closest('.todo-item').querySelector('.todo-item-text').textContent;
+    let rootRef = firebase.database().ref("todolist/" + currentTabContent);
+
+    rootRef.once("value")
+      .then(snapshot => {
+        snapshot.forEach(snapChild => {
+          let val = snapChild.val();
+
+          if (val.nameTask == currentTaskValue) {
+            switch (val.status) {
+              case true:
+                snapChild.ref.update({ "status": false })
+                break
+              case false:
+                snapChild.ref.update({ "status": true })
+                break
+              default:
+                break;
+            }
+          }
+        })
+      })
+
   }
 
+  function removeTask(that) {
+    let currentTabContent = that.closest('.todo-list-wrapper').querySelector('.todo-list.__active').getAttribute('data-tab-content');
+    let currentTaskValue = that.closest('.todo-item').querySelector('.todo-item-text').textContent;
+    let rootRef = firebase.database().ref("todolist/" + currentTabContent);
 
+    rootRef.once("value")
+      .then(snapshot => {
+        snapshot.forEach(snapChild => {
+          let val = snapChild.val();
+
+          if (val.nameTask == currentTaskValue) {
+            snapChild.ref.remove()
+          }
+        })
+      })
+  }
+
+  function searchTask(that) {
+    let lists = that.closest('.todo-body').querySelectorAll('.todo-list');
+
+    lists.forEach(list => {
+      let todos = list.querySelectorAll('li');
+      todos.forEach(item => {
+
+        let i, txtValue,
+          filter = that.value.toLowerCase(),
+
+          todoText = item.querySelector('.todo-item-text');
+
+        txtValue = todoText.textContent || todoText.innerText;
+
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+          item.style.display = "";
+          console.log(filter)
+        } else {
+          item.style.display = "none";
+        }
+      })
+    })
+  }
 });
